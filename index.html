@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style/style.css">
+    <style>
+       body{
+              background-image: url(assets/bg.jpg);
+              background-repeat: no-repeat;
+              background-size: cover;
+       }
+    </style>
+</head>
+<body>
+    <div class = "box">
+    <div id="clock"><span id="hour">00</span><span id="min">00:</span><span id="sec">00:</span></div>
+    <div id="date"></div>
+    </div>
+    <script>
+
+        function Clock(){
+            let time = document.getElementById('clock');
+
+            let currentdate = new Date();
+            
+            
+            let currenthour = currentdate.getHours();
+            let currentmin = currentdate.getMinutes();
+            let currentsec = currentdate.getSeconds();
+             
+            currenthour = currenthour<10 ? '0' + currenthour : currenthour;
+            currentmin = currentmin < 10 ? '0' + currentmin : currentmin;
+            currentsec = currentsec<10 ? '0' + currentsec : currentsec;
+
+            
+            document.getElementById('hour').textContent = currenthour + ":";
+            document.getElementById('min').textContent = currentmin  + ":";
+            document.getElementById('sec').textContent = currentsec ;
+
+            const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+            let day = days[currentdate.getDay()];
+            let month = months[currentdate.getMonth()];
+            let date = currentdate.getDate();
+            let year = currentdate.getFullYear();
+
+        let fullDate = `${day} ${month} ${date} ${year}`;
+        document.getElementById('date').textContent = fullDate;
+    }
+
+
+        
+
+        setInterval(Clock,1000)
+        Clock()
+
+
+    </script>
+
+</body>
+</html>
